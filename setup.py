@@ -10,6 +10,11 @@ __long_description__ = 'Esta api server para encurtar url'
 __author__ = 'Romario Vargas'
 __author_email__ = 'romario.getulio@gmail.com'
 
+testing_extras = [
+    'pytest',
+    'pytest-cov',
+]
+
 setup(
     name='api',
     version=__version__,
@@ -23,4 +28,9 @@ setup(
     keywords='API, MongoDB',
     include_package_data=True,
     zip_safe=False,
+    setup_requires=['pytest-runner'],
+    tests_require=['pytest'],
+    extras_require={
+        'testing': testing_extras,
+    },
 )
