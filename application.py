@@ -3,8 +3,6 @@
 
 from os import getenv
 from os.path import dirname, isfile, join
-
-
 from dotenv import load_dotenv
 
 
@@ -14,7 +12,6 @@ _ENV_FILE = join(dirname(__file__), '.env')
 # Carrega configurações com load_dotenv
 if isfile(_ENV_FILE):
     load_dotenv(dotenv_path=_ENV_FILE)
-
 
 from apps import create_app
 

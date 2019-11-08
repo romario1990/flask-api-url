@@ -10,12 +10,16 @@ class Config:
     DEBUG = eval(getenv('DEBUG').title())
 
 
-class DevelopmentConfig(Config):
+class DevelopConfig(Config):
     FLASK_ENV = 'develop'
     DEBUG = True
 
+class TestingConfig(Config):
+    FLASK_ENV = 'testing'
+    TESTING = True
 
 config = {
-    'develop': DevelopmentConfig,
-    'default': DevelopmentConfig
+    'develop': DevelopConfig,
+    'testing': TestingConfig,
+    'default': DevelopConfig
 }
