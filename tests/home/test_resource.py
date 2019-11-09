@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
+# Python
 import json
+
 
 def test_stats_content_get_response(client):
     """

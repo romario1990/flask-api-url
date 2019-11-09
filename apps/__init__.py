@@ -2,7 +2,11 @@
 # -*- coding: utf-8 -*-
 
 from flask import Flask
+
+# Third
 from config import config
+
+# Local
 from .api import configure_api
 
 

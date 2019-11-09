@@ -6,7 +6,6 @@ local_settings.py
 *.swp
 *.log
 .DS_Store
-.env
 .venv
 env/
 *.eggs
