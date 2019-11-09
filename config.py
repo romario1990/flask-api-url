@@ -4,6 +4,7 @@
 # Python
 from os import getenv
 
+
 class Config:
     SECRET_KEY = getenv('SECRET_KEY')
     APP_PORT = int(getenv('APP_PORT'))

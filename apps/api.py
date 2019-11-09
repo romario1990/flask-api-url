@@ -1,8 +1,12 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
+# Third
 from flask_restful import Api
+
+# Apps
 from apps.stats import stats
+
 
 def configure_api(app):
     # Instânciando as API do FlaskRestful
