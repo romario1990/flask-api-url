@@ -30,10 +30,13 @@ isort:
 	sh -c "isort --skip-glob=.tox --recursive . "
 
 lint:
+	make clean
 	flake8
 
 test:
+	make lint
 	pytest --verbose --color=yes
 
 run:
+	make test
 	python3 application.py
