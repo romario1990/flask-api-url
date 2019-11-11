@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
+
 def test_stats_get_response_200(client):
     # Realiza uma requisição HTTP do tipo get para o endpoint /
     response = client.get('/stats')

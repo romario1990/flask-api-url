@@ -9,15 +9,19 @@ class Config:
     SECRET_KEY = getenv('SECRET_KEY')
     APP_PORT = int(getenv('APP_PORT'))
     DEBUG = eval(getenv('DEBUG').title())
+    MONGODB_HOST = getenv('MONGODB_URI_TEST')
 
 
 class DevelopConfig(Config):
     FLASK_ENV = 'develop'
     DEBUG = True
 
+
 class TestingConfig(Config):
     FLASK_ENV = 'testing'
     TESTING = True
+    MONGODB_HOST = getenv('MONGODB_URI_TEST')
+
 
 config = {
     'develop': DevelopConfig,

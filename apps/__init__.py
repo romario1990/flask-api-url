@@ -2,16 +2,14 @@
 # -*- coding: utf-8 -*-
 
 from flask import Flask
-
-# Third
 from config import config
-
-# Local
 from .api import configure_api
+from .db import db
 
 
 def create_app(config_name):
     app = Flask('api-url')
     app.config.from_object(config[config_name])
+    db.init_app(app)
     configure_api(app)
     return app

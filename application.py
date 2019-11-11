@@ -6,7 +6,7 @@ from os.path import dirname, isfile, join
 from dotenv import load_dotenv
 
 
-# Adicionar path do arquivo .env
+# Adicionar path do arquivo .env. Contém as configurações base
 _ENV_FILE = join(dirname(__file__), '.env')
 
 # Carrega configurações com load_dotenv
