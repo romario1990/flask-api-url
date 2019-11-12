@@ -7,7 +7,9 @@ from apps.users.resources import (
     UsersDelete,
     UsersCadUrl,
     UrlsDelete,
-    StatsID
+    StatsID,
+    Stats,
+    UserStats
 )
 
 
@@ -18,6 +20,8 @@ def configure_api(app):
     api.add_resource(UsersCadUrl, '/users/<string:user_id>/url')
     api.add_resource(UrlsDelete, '/urls/<int:url_id>')
     api.add_resource(StatsID, '/stats/<int:url_id>')
+    api.add_resource(Stats, '/stats')
+    api.add_resource(UserStats, '/users/<string:user_id>/stats')
 
 
     api.init_app(app)
