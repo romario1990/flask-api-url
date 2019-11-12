@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 # -*- coding: utf-8
-from mongoengine.errors import FieldDoesNotExist, DoesNotExist, MultipleObjectsReturned
+from mongoengine.errors import FieldDoesNotExist, DoesNotExist
 from apps.responses import resp_exception, resp_does_not_exist, resp_data_invalid
 from apps.users.models import GeradorID
 from apps.users.schemas import GeradorIDSchema, UrlSchema
