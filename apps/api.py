@@ -2,16 +2,22 @@
 # -*- coding: utf-8 -*-
 
 from flask_restful import Api
-from apps.users.resources_admin import Stats
-from apps.users.resources import SignUp
-from apps.users.resources_admin import AdminUserPageList, AdminUserResource, UsersCadUrl
+from apps.users.resources import (
+    Users,
+    UsersDelete,
+    UsersCadUrl,
+    UrlsDelete,
+    StatsID
+)
 
 
 def configure_api(app):
     api = Api()
-    api.add_resource(Stats, '/stats')
-    api.add_resource(SignUp, '/users')
-    api.add_resource(UsersCadUrl, '/users/<int:userid>/url')
-    api.add_resource(AdminUserPageList, '/admin/users/<int:page_id>')
-    api.add_resource(AdminUserResource, '/admin/users/<string:user_id>')
+    api.add_resource(Users, '/users')
+    api.add_resource(UsersDelete, '/users/<string:user_id>')
+    api.add_resource(UsersCadUrl, '/users/<string:user_id>/url')
+    api.add_resource(UrlsDelete, '/urls/<int:url_id>')
+    api.add_resource(StatsID, '/stats/<int:url_id>')
+
+
     api.init_app(app)
