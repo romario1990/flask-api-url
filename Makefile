@@ -4,17 +4,17 @@
 
 help:
 	@echo "make clean"
-	@echo "       prepare development environment, use only once"
+	@echo "       Preparar ambiente de desenvolvimento, use apenas uma vez"
 	@echo "make clean-build"
-	@echo "       Clear all build directories"
+	@echo "       Limpar todos os diretórios de construção"
 	@echo "make isort"
-	@echo "       run isort command cli in development features"
+	@echo "       Execute o comando isort em recursos de desenvolvimento"
 	@echo "make lint"
 	@echo "       run lint"
 	@echo "make test"
-	@echo "       run tests"
+	@echo "       run testes"
 	@echo "make run"
-	@echo "       run the web application"
+	@echo "       Execute o aplicativo da web flask-api-url"
 
 clean:
 	find . -name '*.pyc' -exec rm --force {} +

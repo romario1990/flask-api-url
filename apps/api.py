@@ -23,5 +23,4 @@ def configure_api(app):
     api.add_resource(Stats, '/stats')
     api.add_resource(UserStats, '/users/<string:user_id>/stats')
 
-
     api.init_app(app)

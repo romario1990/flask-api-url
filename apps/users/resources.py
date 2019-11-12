@@ -74,12 +74,9 @@ class UsersCadUrl(Resource):
         if not isinstance(user, User):
             # Usuário enexistente
             return resp_does_not_exist('Users', 'Usuário')
-        # Se meus dados postados forem Nulos retorno uma respota inválida
         if req_data is None:
             return resp_data_invalid('Users', [], msg=MSG_NO_DATA)
-        # Desserialização os dados postados ou melhor meu payload
         data, errors = schema.load(req_data)
-        # Se houver erros retorno uma resposta inválida
         if errors:
             return resp_data_invalid('Users', errors)
         try:
@@ -192,4 +189,3 @@ class UserStats(Resource):
         return resp_ok(
             'Urls', MSG_RESOURCE_CREATED.format('Url'), data=urlsSchema,
         )
-

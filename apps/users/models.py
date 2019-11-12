@@ -5,7 +5,6 @@ from mongoengine import (
     EmailField,
     StringField,
     IntField,
-    ReferenceField,
 )
 from apps.db import db
 

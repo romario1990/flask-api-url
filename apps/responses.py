@@ -7,9 +7,7 @@ from .messages import MSG_ALREADY_EXISTS
 
 
 def resp_data_invalid(resource: str, errors: dict, msg: str = MSG_INVALID_DATA):
-    '''
-    Responses 422 Unprocessable Entity
-    '''
+    # Responses 422
     if not isinstance(resource, str):
         raise ValueError('O recurso precisa ser uma string.')
     resp = jsonify({
@@ -35,9 +33,7 @@ def resp_exception(resource: str, description: str = '', msg: str = MSG_EXCEPTIO
 
 
 def resp_does_not_exist(resource: str, description: str):
-    '''
-    Responses 404 Not Found
-    '''
+    # Responses 404 Not Found
     if not isinstance(resource, str):
         raise ValueError('O recurso precisa ser uma string.')
     resp = jsonify({

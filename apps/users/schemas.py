@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from marshmallow import Schema
-from marshmallow.fields import Email, Str, Boolean, Nested, Int
+from marshmallow.fields import Email, Str, Int
 from apps.messages import MSG_FIELD_REQUIRED
 
 
