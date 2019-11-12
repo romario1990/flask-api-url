@@ -3,7 +3,7 @@
 from mongoengine.errors import FieldDoesNotExist, DoesNotExist, MultipleObjectsReturned
 from apps.responses import resp_exception, resp_does_not_exist, resp_data_invalid
 from apps.users.models import GeradorID
-from apps.users.schemas import GeradorIDSchema
+from apps.users.schemas import GeradorIDSchema, UrlSchema
 from .models import User, Url
 
 
@@ -63,3 +63,25 @@ def incrementId(tabela):
     dataGerador["id_tabela"] = GeradorID.objects.count() + 1
     modelGerador = GeradorID(**dataGerador)
     modelGerador.save()
+
+
+def getTotalHits():
+    dataLocal = Url.objects.order_by('-hits')
+    schema = UrlSchema()
+    totalHists = 0
+    for i in range(len(dataLocal)):
+        url, erros = schema.dump(dataLocal[i])
+        totalHists = url["hits"] + totalHists
+
+    return totalHists
+
+
+def getTotalHitsUser(user_id):
+    dataLocal = Url.objects.filter(nameUser=user_id).order_by('-hits')
+    schema = UrlSchema()
+    totalHists = 0
+    for i in range(len(dataLocal)):
+        url, erros = schema.dump(dataLocal[i])
+        totalHists = url["hits"] + totalHists
+
+    return totalHists

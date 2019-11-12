@@ -5,6 +5,7 @@ from mongoengine import (
     EmailField,
     StringField,
     IntField,
+    ReferenceField,
 )
 from apps.db import db
 
@@ -24,6 +25,7 @@ class Url(db.Document):
     hits = IntField(required=True, fefault=1)
     url = StringField(required=True)
     short_url = StringField(required=True)
+    nameUser = StringField(required=True)
 
 
 class GeradorID(db.Document):
