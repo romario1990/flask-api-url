@@ -1,27 +1,16 @@
 #!/usr/bin/python3
 # -*- coding: utf-8
 from mongoengine.errors import FieldDoesNotExist, DoesNotExist, MultipleObjectsReturned
-from apps.responses import resp_exception, resp_does_not_exist
-from .models import User
-
-
-def check_password_in_signup(password: str, confirm_password: str):
-    if not password:
-        return False
-
-    if not confirm_password:
-        return False
-
-    if not password == confirm_password:
-        return False
-
-    return True
+from apps.responses import resp_exception, resp_does_not_exist, resp_data_invalid
+from apps.users.models import GeradorID
+from apps.users.schemas import GeradorIDSchema
+from .models import User, Url
 
 
 def get_user_by_id(user_id: str):
     try:
         # buscamos todos os usuários da base utilizando o paginate
-        return User.objects.get(id=user_id)
+        return User.objects.get(name=user_id)
 
     except DoesNotExist:
         return resp_does_not_exist('Users', 'Usuário')
@@ -33,39 +22,44 @@ def get_user_by_id(user_id: str):
         return resp_exception('Users', description=e.__str__())
 
 
-def exists_email_in_users(email: str, instance=None):
-    """
-    Verifico se existe um usuário com aquele email
-    """
-    user = None
-
-    try:
-        user = User.objects.get(email=email)
-
-    except DoesNotExist:
-        return False
-
-    except MultipleObjectsReturned:
-        return True
-
-    # verifico se o id retornado na pesquisa é mesmo da minha instancia
-    # informado no parâmetro
-    if instance and instance.id == user.id:
-        return False
-
-    return True
-
-
-def get_user_by_email(email: str):
+def get_url_by(url_id: str):
     try:
         # buscamos todos os usuários da base utilizando o paginate
-        return User.objects.get(email=email)
+        return Url.objects.get(url=url_id)
 
     except DoesNotExist:
-        return resp_does_not_exist('Users', 'Usuário')
+        return resp_does_not_exist('Urls', 'Url')
 
     except FieldDoesNotExist as e:
-        return resp_exception('Users', description=e.__str__())
+        return resp_exception('Urls', description=e.__str__())
 
     except Exception as e:
-        return resp_exception('Users', description=e.__str__())
+        return resp_exception('Urls', description=e.__str__())
+
+
+def get_url_by_idUrl(url_id: str):
+    try:
+        # buscamos todos os usuários da base utilizando o paginate
+        return Url.objects.get(idUrl=url_id)
+
+    except DoesNotExist:
+        return resp_does_not_exist('Urls', 'Url')
+
+    except FieldDoesNotExist as e:
+        return resp_exception('Urls', description=e.__str__())
+
+    except Exception as e:
+        return resp_exception('Urls', description=e.__str__())
+
+
+def incrementId(tabela):
+    schema = GeradorIDSchema()
+    dataGerador = {"id_tabela": 0, "name_tabela": tabela}
+    dataGerador, errors = schema.load(dataGerador)
+    # Se houver erros retorno uma resposta inválida
+    if errors:
+        return resp_data_invalid('Urls', errors)
+    # TO_DO implemetar getMax do document DeradorID para distribuir id entre as tabelas
+    dataGerador["id_tabela"] = GeradorID.objects.count() + 1
+    modelGerador = GeradorID(**dataGerador)
+    modelGerador.save()

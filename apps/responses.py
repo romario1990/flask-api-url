@@ -49,29 +49,35 @@ def resp_does_not_exist(resource: str, description: str):
 
 
 def resp_already_exists(resource: str, description: str):
-    '''
-    Responses 400
-    '''
-
+    # Responses 400
     if not isinstance(resource, str):
         raise ValueError('O recurso precisa ser uma string.')
     resp = jsonify({
         'resource': resource,
         'message': MSG_ALREADY_EXISTS.format(description),
     })
-    resp.status_code = 400
+    resp.status_code = 409
     return resp
 
 
 def resp_ok(resource: str, message: str, data=None, **extras):
-    '''
-    Responses 200
-    '''
-
-    response = {'status': 200, 'message': message, 'resource': resource}
-    if data:
-        response['data'] = data
-    response.update(extras)
-    resp = jsonify(response)
+    # Responses 200
+    resp = jsonify(data)
     resp.status_code = 200
+    return resp
+
+
+def resp_ok_created(resource: str, message: str, data=None, **extras):
+    # Responses 201
+    response = {'id': ''}
+    response["id"] = data["name"]
+    resp = jsonify(response)
+    resp.status_code = 201
+    return resp
+
+
+def resp_ok_created_url(resource: str, message: str, data=None, **extras):
+    # Responses 201
+    resp = jsonify(data)
+    resp.status_code = 201
     return resp

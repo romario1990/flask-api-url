@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from marshmallow import Schema
-from marshmallow.fields import Email, Str, Boolean, Nested
+from marshmallow.fields import Email, Str, Boolean, Nested, Int
 from apps.messages import MSG_FIELD_REQUIRED
 
 
@@ -13,7 +13,7 @@ class UserRegistrationUrlSchema(Schema):
 
 
 class UserRegistrationSchema(Schema):
-    full_name = Str(
+    name = Str(
         required=True, error_messages={'required': MSG_FIELD_REQUIRED}
     )
     email = Email(
@@ -26,30 +26,33 @@ class UserRegistrationSchema(Schema):
 
 class UserSchema(Schema):
     id = Str()
-    full_name = Str(
+    name = Str(
         required=True, error_messages={'required': MSG_FIELD_REQUIRED}
     )
     email = Email(
         required=True, error_messages={'required': MSG_FIELD_REQUIRED}
     )
-    cpf_cnpj = Str()
-    active = Boolean()
 
 
-class AddressSchema(Schema):
-    zip_code = Str()
-    address = Str()
-    number = Str()
-    complement = Str()
-    neighborhood = Str()
-    city = Str()
-    city_id = Str()
-    state = Str()
-    country = Str()
+class UrlSchema(Schema):
+    idUrl = Int(
+        required=True, error_messages={'required': MSG_FIELD_REQUIRED}
+    )
+    hits = Int(
+        required=True, error_messages={'required': MSG_FIELD_REQUIRED}
+    )
+    url = Str(
+        required=True, error_messages={'required': MSG_FIELD_REQUIRED}
+    )
+    short_url = Str(
+        required=True, error_messages={'required': MSG_FIELD_REQUIRED}
+    )
 
 
-class UserUpdateSchema(Schema):
-    full_name = Str()
-    email = Email()
-    cpf_cnpj = Str()
-    address = Nested(AddressSchema)
+class GeradorIDSchema(Schema):
+    id_tabela = Int(
+        required=True, error_messages={'required': MSG_FIELD_REQUIRED}
+    )
+    name_tabela = Str(
+        required=True, error_messages={'required': MSG_FIELD_REQUIRED}
+    )
