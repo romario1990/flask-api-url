@@ -7,7 +7,8 @@ from os import getenv
 
 class Config:
     SECRET_KEY = getenv('SECRET_KEY')
-    APP_PORT = int(getenv('APP_PORT'))
+    HOST = getenv('HOST')
+    PORT = int(getenv('PORT'))
     DEBUG = eval(getenv('DEBUG').title())
     MONGODB_HOST = getenv('MONGODB_URI_TEST')
 
@@ -22,8 +23,13 @@ class TestingConfig(Config):
     TESTING = True
     MONGODB_HOST = getenv('MONGODB_URI_TEST')
 
+class ProductionConfig(Config):
+    FLASK_ENV = 'production'
+    TESTING = False
+    DEBUG = False
 
 config = {
+    'production': ProductionConfig,
     'develop': DevelopConfig,
     'testing': TestingConfig,
     'default': DevelopConfig
